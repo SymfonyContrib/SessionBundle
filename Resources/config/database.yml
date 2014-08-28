@@ -1,0 +1,23 @@
+parameters:
+    session.handler.database.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+    session.handler.database.table:
+        db_table: session
+        db_id_col: id
+        db_data_col: data
+        db_time_col: updated
+
+services:
+    session.handler.database.connection:
+        class: PDO
+        arguments:
+            dsn: "mysql:host=%session.config.database.host%;port=%session.config.database.port%;dbname=%session.config.database.name%"
+            user: %session.config.database.user%
+            password: %session.config.database.pass%
+        calls:
+            - [setAttribute, [3, 2]]
+
+    session.handler.database:
+        class: %session.handler.database.class%
+        arguments:
+            - @session.handler.database.connection
+            - %session.handler.database.table%

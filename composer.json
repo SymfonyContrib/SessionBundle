@@ -1,0 +1,28 @@
+{
+    "name": "symfonycontrib/session-bundle",
+    "type": "symfony-bundle",
+    "description": "Easily setup database and memcache sessions in Symfony2.",
+    "keywords": [],
+    "homepage": "http://symfonycontrib.com/",
+    "license": "",
+    "require": {
+        "php":                              ">=5.4",
+        "symfony/symfony":          "~2.3",
+        "doctrine/orm":                 "~2.4",
+        "doctrine/doctrine-bundle": "~1.2"
+    },
+    "suggest": {
+        "ext-memcached": "Allows use of memcached for session storage."
+    },
+    "autoload": {
+        "psr-0": {
+            "SymfonyContrib\\Bundle\\SessionBundle\\": ""
+        }
+    },
+    "target-dir": "SymfonyContrib/Bundle/SessionBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

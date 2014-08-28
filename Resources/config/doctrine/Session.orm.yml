@@ -1,0 +1,13 @@
+SymfonyContrib\Bundle\SessionBundle\Entity\Session:
+    type: entity
+    table: session
+    id:
+        id:
+            type: string
+            length: 255
+    fields:
+        data:
+            type: text
+        timestamp:
+            column: updated
+            type: integer
