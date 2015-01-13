@@ -1,4 +1,4 @@
-Junta\Bundle\SessionBundle\Entity\Session:
+SymfonyContrib\Bundle\SessionBundle\Entity\Session:
     type: entity
     table: session
     id:

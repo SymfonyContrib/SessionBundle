@@ -1,6 +1,6 @@
 <?php
 
-namespace Junta\Bundle\SessionBundle\Model;
+namespace SymfonyContrib\Bundle\SessionBundle\Model;
 
 class Session
 {
