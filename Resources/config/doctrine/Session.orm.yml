@@ -1,4 +1,4 @@
-SymfonyContrib\Bundle\SessionBundle\Entity\Session:
+Junta\Bundle\SessionBundle\Entity\Session:
     type: entity
     table: session
     id:
@@ -7,7 +7,13 @@ SymfonyContrib\Bundle\SessionBundle\Entity\Session:
             length: 255
     fields:
         data:
-            type: text
+            type: blob
+        lifetime:
+            type: bigint
+            options:
+                unsigned: true
         timestamp:
             column: updated
             type: integer
+            options:
+                unsigned: true

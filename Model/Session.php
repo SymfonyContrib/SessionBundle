@@ -1,44 +1,23 @@
 <?php
 
-namespace SymfonyContrib\Bundle\SessionBundle\Model;
+namespace Junta\Bundle\SessionBundle\Model;
 
 class Session
 {
-    /** @var string */
+    /** @var  string */
     protected $id;
 
-    /** @var string */
+    /** @var  object */
     protected $data;
 
-    /** @var int */
+    /** @var  int */
+    protected $lifetime;
+
+    /** @var  int */
     protected $timestamp;
 
-    /** @var array */
+    /** @var  array */
     protected $decodedData;
-
-    /**
-     * @param string $data
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * @return string
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @param string $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string
@@ -49,11 +28,55 @@ class Session
     }
 
     /**
-     * @param int $timestamp
+     * @param string $id
+     *
+     * @return Session
      */
-    public function setTimestamp($timestamp)
+    public function setId($id)
     {
-        $this->timestamp = $timestamp;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return object
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param object $data
+     *
+     * @return Session
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLifetime()
+    {
+        return $this->lifetime;
+    }
+
+    /**
+     * @param int $lifetime
+     *
+     * @return Session
+     */
+    public function setLifetime($lifetime)
+    {
+        $this->lifetime = $lifetime;
+
+        return $this;
     }
 
     /**
@@ -62,6 +85,18 @@ class Session
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * @param int $timestamp
+     *
+     * @return Session
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+
+        return $this;
     }
 
     public function getDecodedData()
@@ -79,7 +114,7 @@ class Session
         // Keep a copy of the current user's session.
         $backup = $_SESSION;
         // Decode the session.
-        session_decode($this->data);
+        session_decode(stream_get_contents($this->data));
         // Save decoded data
         $this->decodedData = $_SESSION;
         // Return the original session data.

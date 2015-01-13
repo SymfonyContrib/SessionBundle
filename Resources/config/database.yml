@@ -1,23 +1,24 @@
 parameters:
-    session.handler.database.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
-    session.handler.database.table:
-        db_table: session
-        db_id_col: id
-        db_data_col: data
-        db_time_col: updated
+    junta_session.handler.database.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+    junta_session.handler.database.table:
+        db_table:        session
+        db_id_col:       id
+        db_data_col:     data
+        db_time_col:     updated
+        db_lifetime_col: lifetime
 
 services:
-    session.handler.database.connection:
+    junta_session.handler.database.connection:
         class: PDO
         arguments:
-            dsn: "mysql:host=%session.config.database.host%;port=%session.config.database.port%;dbname=%session.config.database.name%"
-            user: %session.config.database.user%
-            password: %session.config.database.pass%
+            dsn:      "mysql:host=%junta_session.config.database.host%;port=%junta_session.config.database.port%;dbname=%junta_session.config.database.name%"
+            user:     "%junta_session.config.database.user%"
+            password: "%junta_session.config.database.pass%"
         calls:
             - [setAttribute, [3, 2]]
 
-    session.handler.database:
-        class: %session.handler.database.class%
+    junta_session.handler.database:
+        class: "%junta_session.handler.database.class%"
         arguments:
-            - @session.handler.database.connection
-            - %session.handler.database.table%
+            - "@junta_session.handler.database.connection"
+            - "%junta_session.handler.database.table%"
