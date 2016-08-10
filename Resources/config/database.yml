@@ -1,5 +1,5 @@
 parameters:
-    session.handler.database.class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+    # Default database configuration.
     session.handler.database.table:
         db_table:        session
         db_id_col:       id
@@ -18,7 +18,7 @@ services:
             - [setAttribute, [3, 2]]
 
     session.handler.database:
-        class: "%session.handler.database.class%"
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         arguments:
             - "@session.handler.database.connection"
             - "%session.handler.database.table%"

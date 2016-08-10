@@ -32,7 +32,7 @@ $ composer update symfonycontrib/session-bundle
 ### 4. Update your schema
 
 ```bash
-$ app/console d:s:u --force
+$ bin/console d:s:u --force
 ```
 
 ### 5. Set session handler in config.yml

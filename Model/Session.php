@@ -2,6 +2,9 @@
 
 namespace SymfonyContrib\Bundle\SessionBundle\Model;
 
+/**
+ * Session data model.
+ */
 class Session
 {
     /** @var  string */
@@ -99,6 +102,9 @@ class Session
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getDecodedData()
     {
         // Check to see of data has been decoded yet.
@@ -109,6 +115,11 @@ class Session
         return $this->decodedData;
     }
 
+    /**
+     * Decode session data.
+     *
+     * @return array
+     */
     public function decode()
     {
         // Keep a copy of the current user's session.

@@ -26,6 +26,10 @@ class MemcachedSessionHandler extends BaseMemcachedSessionHandler
         parent::__construct($memcached, $parentOptions);
     }
 
+    /**
+     * @param array $options
+     * @return \Memcached
+     */
     public static function memcachedFactory(array $options)
     {
         $memcached = $options['persistent'] ? new \Memcached($options['persistent']) : new \Memcached();
@@ -43,11 +47,9 @@ class MemcachedSessionHandler extends BaseMemcachedSessionHandler
                 \Memcached::OPT_NO_BLOCK             => $options['no_block'],
                 \Memcached::OPT_TCP_NODELAY          => $options['tcp_nodelay'],
                 \Memcached::OPT_CONNECT_TIMEOUT      => $options['connect_timeout'],
-//                \Memcached::OPT_RETRY_TIMEOUT        => $options['retry_timeout'],
                 \Memcached::OPT_SEND_TIMEOUT         => $options['send_timeout'],
                 \Memcached::OPT_RECV_TIMEOUT         => $options['receive_timeout'],
                 \Memcached::OPT_POLL_TIMEOUT         => $options['poll_timeout'],
-//                \Memcached::OPT_SERVER_FAILURE_LIMIT => $options['server_failure_limit'],
             ];
             $memcached->setOptions($sessionOptions);
             $memcached->addServers($options['servers']);

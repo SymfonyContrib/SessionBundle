@@ -1,8 +1,5 @@
-parameters:
-    session.handler.memcached.class: SymfonyContrib\Bundle\SessionBundle\Memcached\MemcachedSessionHandler
-
 services:
     session.handler.memcached:
-        class: %session.handler.memcached.class%
+        class: SymfonyContrib\Bundle\SessionBundle\Memcached\MemcachedSessionHandler
         arguments:
             - %session.config.memcached%
